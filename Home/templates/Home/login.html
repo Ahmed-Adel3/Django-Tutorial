@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block heading %} Login to Products Store {% endblock %}
+
+{% block body %}
+<style>
+    input{
+          height: 2.5rem;
+          width: 100%;
+		  padding: 12px 20px;
+		  margin: 8px 0;
+		  display: inline-block;
+		  border: 1px solid #ccc;
+		  border-radius: 4px;
+		  box-sizing: border-box;
+    }
+
+    .helptext {
+        font-size: 0.7rem;
+    }
+</style>
+         <div class="container mx-auto flex items-center flex-wrap">
+            <nav id="store" class="w-full z-30 top-0 px-6 py-0">
+               <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+                  <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+                  Login
+                  </a>
+               </div>
+            </nav>
+         </div>
+         <div class="grid grid-cols-3 gap-4">
+            <div></div>
+            <div>
+				<form method="POST">
+					{% csrf_token %}
+					{{ login_form}}
+                    <div style="display:flex;" class="grid grid-cols-3 gap-4">
+                        <button class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-g md:px-2" type="submit">Login</button>
+				        <div>or</div>
+                        <a href="{% url 'register' %}" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 md:py-1 md:text-g md:px-1" type="button">Register a new account !</a>
+                    </div>
+				</form>
+            </div>
+         </div>
+
+{% endblock %}

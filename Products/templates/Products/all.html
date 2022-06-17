@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %} Products - All {% endblock %}
+{% block heading %} All Products Grid ... {% endblock %}
+{% block body %}
+<div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+   <div id="store" class="w-full z-30 top-0 px-6 py-1">
+      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+         <div class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+            All Products Grid
+         </div>
+         <div class="rounded-md shadow">
+            <a href="{% url 'new' %}" class="w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"> Add New Product </a>
+         </div>
+         <div class="flex items-center" id="store-nav-content">
+            <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+               <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
+               </svg>
+            </a>
+            <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+               <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
+               </svg>
+            </a>
+         </div>
+      </div>
+   </div>
+   <div class="w-full z-30 top-0 px-6 py-1">
+      <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+         <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+            <table class="min-w-full">
+               <thead>
+                  <tr>
+                     <th
+                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                        Name
+                     </th>
+                     <th
+                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                        Description
+                     </th>
+                     <th
+                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                        Details
+                     </th>
+                     <th
+                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                        Edit
+                     </th>
+                     <th
+                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                        Delete
+                     </th>
+                  </tr>
+               </thead>
+               <tbody class="bg-white">
+                  {% for product in products %}
+                  <tr id="product{{product.id}}tr">
+                     <td class="px-2 py-2 whitespace-no-wrap border-b border-gray-200">
+                        <div class="flex items-center">
+                           <div class="flex-shrink-0">
+                              <img class="w-14 h-14 rounded-full hover:grow hover:shadow-lg" src="/{{product.image}}" alt="admin dashboard ui">
+                           </div>
+                           <div class="ml-4">
+                              <div class="text-sm font-medium leading-5 text-gray-900">
+                                 {{product.name}}
+                              </div>
+                           </div>
+                        </div>
+                     </td>
+                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div class="text-sm leading-5 text-gray-500">{{product.description}}</div>
+                     </td>
+                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div class="text-sm leading-5 text-gray-500">
+                           <a href="{% url 'details' product.id %}">
+                              <svg class="h-6 w-6 fill-stroke" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                              </svg>
+                           </a>
+                        </div>
+                     </td>
+                     <td
+                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                         <a href="{% url 'edit' product.id %}">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                              viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                 d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                           </svg>
+                         </a>
+                     </td>
+                     <td
+                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                        <a onclick="fireModal('{{product.id}}','{% url 'delete' product.id %}')">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+                              viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                           </svg>
+                        </a>
+
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+     <script>
+          let fireModal = (id,url)=>{
+            Swal.fire({
+              title: 'Are you sure you want to delete this product?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                  fetch(url)
+                                        .then((res) => {
+                             console.log(res)
+                             if(res.redirected){
+                               Swal.fire(
+                                    'Permission Required!',
+                                    'Sorry, you should be a staff member to take this action',
+                                    'error'
+                                ).then( ()=> window.location.href= res.url)
+                             }
+                             else{
+                                document.getElementById("product"+id+"tr").remove()
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                ).then( ()=> window.location.href= {% url 'all_products' %})
+                             }
+                        }).error((error)=> {
+                              console.log(error)
+                        });
+              }
+            })
+         }
+     </script>
+{% endblock %}
