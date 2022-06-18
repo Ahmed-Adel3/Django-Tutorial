@@ -64,11 +64,11 @@ WSGI_APPLICATION = 'DjangoTutorial.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqllite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'mysql': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AhmedAdel$productsdb',
         'USER': 'AhmedAdel',
@@ -113,13 +113,10 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_URL = 'static/'
+STATIC_ROOT = '/home/AhmedAdel/Django-Tutorial/static' #for production
 
-STATIC_URL = 'Home/static/'
-MEDIA_ROOT = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+#MEDIA_ROOT = BASE_DIR
+MEDIA_ROOT = '/home/AhmedAdel/Django-Tutorial/images' #for production
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
