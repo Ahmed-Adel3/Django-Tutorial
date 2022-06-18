@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dg*aofq3s_0@ki3+ri=(mp)38skluautw_w=u+d*-c6i@8236k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -64,11 +64,11 @@ WSGI_APPLICATION = 'DjangoTutorial.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'sqllite': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'default': {
+    'mysql': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AhmedAdel$productsdb',
         'USER': 'AhmedAdel',
@@ -113,10 +113,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
-STATIC_ROOT = '/home/AhmedAdel/Django-Tutorial/static' #for production
+STATIC_URL = '/static/'
 
-#MEDIA_ROOT = BASE_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, "images")
 MEDIA_ROOT = '/home/AhmedAdel/Django-Tutorial/images' #for production
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
